@@ -1,9 +1,6 @@
 /* eslint-env node */
 
 module.exports = {
-  // env: {
-  //   node: true
-  // },
   extends: [
     'stylelint-config-standard', // 配置stylelint拓展插件
     'stylelint-config-html/vue', // 配置 vue 中 template 样式格式化

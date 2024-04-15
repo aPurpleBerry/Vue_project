@@ -1,20 +1,19 @@
 <template>
-  <div class="box">
-    <h1>我是APP根组件</h1>
-  </div>
+  <h1>测试代码</h1>
 </template>
 
 <script setup lang="ts">
-const str = '我爱你祖国'
+import axios from 'axios'
+axios({
+  url: '/api/user/login',
+  method: 'post',
+  data: {
+    username: 'admin',
+    password: '111111'
+  }
+})
 </script>
 
 <style scoped lang="scss">
-.box {
-  width: 600px;
-  height: 400px;
-  background-color: black;
-  h1 {
-    color: white;
-  }
-}
+
 </style>
