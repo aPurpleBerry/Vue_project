@@ -11,6 +11,14 @@ import 'virtual:svg-icons-register'
 // 自定义插件
 import gloablComponent from './components/index';
 
+// 引入模板的全局样式
+import '@/styles/index.scss'
+
+// 引入路由进
+import router from './router'
+
+import pinia from './store'
+
 // createApp(App).mount('#app')
 const app = createApp(App) //获取实例对象
 
@@ -19,8 +27,9 @@ app.use(ElementPlus, {
 })
 app.use(gloablComponent);
 
-// 引入模板的全局样式
-import '@/styles/index.scss'
+app.use(router)
+
+app.use(pinia)
 
 // 将应用挂载
 app.mount('#app')
