@@ -4,6 +4,9 @@ import {defineStore} from 'pinia'
 import  {reqLogin} from '@/api/user/index.ts'
 // 引入数据类型
 import type {loginForm,loginResponseData} from '@/api/user/type.ts'
+// 引入路由（常量路由）
+import { constantRoute } from '@/router/routes.ts'
+
 import type {UserState} from './types/type.ts'
 //引入操作本地存储的数据
 import { SET_TOKEN,GET_TOKEN } from '@/utils/token.ts'
@@ -12,7 +15,8 @@ let useUserStore = defineStore('User', {
   // 小仓库存储数据的地方
   state: ():UserState=>{
     return {
-      token: GET_TOKEN()
+      token: GET_TOKEN(),
+      menuRoutes: constantRoute // 仓库存储菜单
     }
   },
   //异步/逻辑
