@@ -39,17 +39,17 @@ import Main from './main/index.vue'
 import { useRoute } from 'vue-router';
 // 引入顶部tabbar组件
 import Tabbar from './tabbar/index.vue'
-
+// 仓库
+import useLayoutSetting from '@/store/modules/setting';
 // 获取用户相关的小仓库
 import useUserStore from '@/store/modules/user';
 let userStore = useUserStore()
 
 //获取路由对象
-let $route = useRoute()
+let $route = useRoute();
 
 //获取layout配置仓库
-import useLayoutSetting from '@/store/modules/setting'
-let LayoutSettingStore = useLayoutSetting()
+let LayoutSettingStore = useLayoutSetting();
 
 </script>
 

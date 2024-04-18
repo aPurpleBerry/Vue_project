@@ -31,6 +31,9 @@ app.use(router)
 
 app.use(pinia)
 
+// 引入路由鉴权
+import './permission.ts';
+
 // 将应用挂载
 app.mount('#app')
 

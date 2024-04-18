@@ -1,5 +1,7 @@
 import axios from "axios";
 import { ElMessage } from "element-plus";
+import useUserStore from "@/store/modules/user";
+
 //【第一步】 利用axios对象的create方法。去创建axios示例，是为了方便有其他的配置
 //创建axios实例
 let request = axios.create({
@@ -9,11 +11,15 @@ let request = axios.create({
 })
 //【第二步】请求拦截器
 request.interceptors.request.use(config => {
-    /*
-      这里在发送请求之前做些什么
-      config配置对象里面有一个 headers属性请求头，经常给服务器端携带公共参数
-    */
-    return config; //返回配置对象
+  let userStore = useUserStore()
+  if(userStore.token) {
+    config.headers.token = userStore.token
+  }
+  /*
+    这里在发送请求之前做些什么
+    config配置对象里面有一个 headers属性请求头，经常给服务器端携带公共参数
+  */
+  return config; //返回配置对象
 });
 //【第三步】响应拦截器
 // request.interceptors.response.use(第一个函数,第二个函数)

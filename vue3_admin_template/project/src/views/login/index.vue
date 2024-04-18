@@ -27,10 +27,10 @@
 </template>
 
 <script setup lang="ts">
-import {User, Lock} from '@element-plus/icons-vue'
-import {reactive,ref} from 'vue'
+import { User, Lock } from '@element-plus/icons-vue'
+import { reactive,ref } from 'vue'
 import useUserStore from '@/store/modules/user'
-import {useRouter} from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { ElNotification } from 'element-plus' 
 import { getTime } from '@/utils/time' //获取当前时间
 
@@ -40,6 +40,8 @@ let loading = ref(false)
 let loginForms = ref()
 // 获取路由器
 const $router = useRouter()
+const $route = useRoute()
+
 let loginForm = reactive({username:'admin',password:'111111'})
 
 // *************************登录按钮*****************************
@@ -57,7 +59,11 @@ const login = async () => {
     // 保证登陆成功
     await userStore.userLogin(loginForm)
     // 这里抓的是登陆失败的错误，不是网络错误
-    $router.push('/')
+    // 判断登陆的时候，路径当中是否有query参数
+    let redirect:any = $route.query.redirect
+    $router.push({
+      path: redirect || '/'
+    })
     // 登录成功提示信息
     ElNotification({
       type: 'success',

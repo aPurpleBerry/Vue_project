@@ -1,5 +1,25 @@
+/*
 // 统一管理咱们项目用户相关的接口
+import request from '@/utils/request'
+
+
+// 项目用户相关的请求地址
+enum API {
+  LOGIN_URL = '/admin/acl/index/login',
+  USERINFO_URL = ''
+}
+
+// 登录接口
+export const reqLogin = (data:any) => {
+  return request.post<any,any>(API.LOGIN_URL, data)
+}
+*/
+
+
+//之前使用mock接口
+
 import myaxios from '@/utils/request'
+
 // 引入TS类型
 import type {loginForm,loginResponseData,userResponseData} from './type'
 
@@ -22,3 +42,4 @@ export const reqLogin = (data:loginForm) =>
 //(2)获取用户信息接口方法
 export const reqUserInfo = () => 
   myaxios.get<any,userResponseData>(API.USERINFO_URL)
+

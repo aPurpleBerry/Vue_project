@@ -50,12 +50,14 @@ export default [
       },
   },
   // 获取用户信息
-  {
+  { 
       url: '/api/user/info',
       method: 'get',
       response: (request) => {
           //获取请求头携带token
           const token = request.headers.token;
+          // console.log('mock---token',token);
+          
           //查看用户信息是否包含有次token用户
           const checkUser = createUserList().find((item) => item.token === token)
           //没有返回失败的信息
