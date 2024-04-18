@@ -9,7 +9,7 @@
             <h1>Hello</h1>
           </el-form-item>
           <el-form-item>
-            <h2>欢迎来到硅谷甄选</h2>
+            <h2>欢迎来到雪人甄选</h2>
           </el-form-item>
           <el-form-item prop="username">
             <el-input :prefix-icon="User" v-model="loginForm.username"></el-input>
@@ -73,12 +73,14 @@ const login = async () => {
     // 登陆成功加载停止
     loading.value = true
   } catch (error) {
+    console.error(error);
+    
     // 登陆失败账号加载停止
     loading.value = false
     // 登陆失败的提示信息
     ElNotification({
       type: 'error',
-      message: (error as Error).message
+      message: '登陆失败(这里要改)'
     })
   }
 }

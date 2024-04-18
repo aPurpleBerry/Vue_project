@@ -1,21 +1,31 @@
-/*
+
 // 统一管理咱们项目用户相关的接口
 import request from '@/utils/request'
-
+import type {loginFormData,loginResponseData,userInfoResponseData} from './type'
 
 // 项目用户相关的请求地址
 enum API {
   LOGIN_URL = '/admin/acl/index/login',
-  USERINFO_URL = ''
+  USERINFO_URL = '/admin/acl/index/info',
+  LOGOUT_URL = '/admin/acl/index/logout'
 }
 
 // 登录接口
-export const reqLogin = (data:any) => {
-  return request.post<any,any>(API.LOGIN_URL, data)
+export const reqLogin = (data:loginFormData) => {
+  return request.post<any,loginResponseData>(API.LOGIN_URL, data)
+  //loginResponseData限制返回类型
 }
-*/
 
+// 用户信息接口
+export const reqUserInfo = ()=> {
+  //请求拦截器自动带了token
+  return request.get<any, userInfoResponseData>(API.USERINFO_URL)
+}
 
+export const reqLogout = () => {
+  return request.post<any, any>(API.LOGOUT_URL)
+}
+/*
 //之前使用mock接口
 
 import myaxios from '@/utils/request'
@@ -43,3 +53,4 @@ export const reqLogin = (data:loginForm) =>
 export const reqUserInfo = () => 
   myaxios.get<any,userResponseData>(API.USERINFO_URL)
 
+*/
