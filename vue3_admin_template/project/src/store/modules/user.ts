@@ -3,9 +3,9 @@ import {defineStore} from 'pinia'
 // 引入接口
 import  {reqLogin,reqUserInfo,reqLogout } from '@/api/user/index.ts'
 // 引入数据类型
-import type {loginFormData,loginResponseData,userInfoResponseData} from ''@/api/user/type.ts'
+import type {loginFormData,loginResponseData,userInfoResponseData} from '@/api/user/type.ts'
 
-// 引入路由（常量路由）
+// 引入路由（常量路由)
 import { constantRoute } from '@/router/routes.ts'
 
 import type {UserState} from './types/type.ts'

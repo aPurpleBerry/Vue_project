@@ -96,7 +96,7 @@ let LayoutSettingStore = useLayoutSetting();
   .layout_main{
     width: calc(100% - $base-menu-width);
     height: calc(100vh - $base-tabbar-height);
-    background-color: yellow;
+    // background-color: yellow;
     position: fixed; //老师这里写的是absolute
     top: $base-tabbar-height;
     left: $base-menu-width;
