@@ -31,6 +31,8 @@ router.beforeEach(async(to, from, next) => {
   let username = userStore.username
 
   if(token) {
+    // console.log('有token');
+    
     //有 token 的时候 : 有登陆信息
     if(to.path === '/login') { // 还想去登录页面，不行
       next({ path:'/' })
@@ -42,7 +44,8 @@ router.beforeEach(async(to, from, next) => {
         try {
           //场景是 刚登陆完，用户拿到后台给的token，但此时没有用户信息，就统一在路由首位中获取一下用户的信息。
           await userStore.userInfo()
-          next()
+          next({ ...to })
+
         } catch(error) {
           //token过期 获取不到用户信息
           // 用户手动修改了本地token
@@ -52,6 +55,8 @@ router.beforeEach(async(to, from, next) => {
       }
     }
   } else {
+    // console.log('没有 token');
+    
     // 本地没有token的时候：没有登陆
     // 在没有登陆的时候访问 login 是可以的，访问别的路由是不行的，但我们会把你想去的路由记录下来
     if(to.path === '/login') {
@@ -61,7 +66,7 @@ router.beforeEach(async(to, from, next) => {
     }
   }
 
-  next() 
+  // next() 
 })
 
 // 全局后置守卫

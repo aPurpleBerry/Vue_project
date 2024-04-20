@@ -47,7 +47,7 @@ import { useRouter } from 'vue-router';
 const $router = useRouter()
 
 const goRoute = (vc:any) => {
-  console.log(vc) // element ui 设计 点击菜单的时候注入VC事件
+  // console.log(vc) // element ui 设计 点击菜单的时候注入VC事件
   $router.push(vc.index)
 }
 </script>
