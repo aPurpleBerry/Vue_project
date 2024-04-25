@@ -61,7 +61,7 @@
 
 <script setup lang="ts">
 import useCategoryStore from '@/store/modules/category';
-import { watch, ref, onMounted, reactive, nextTick } from 'vue'
+import { watch, ref, onMounted, reactive, nextTick, onBeforeUnmount } from 'vue'
 import { reqAttr, reqAddOrUpdateAttr, reqRemove } from '@/api/product/attr'
 import type { AttrResponseData, Attr, AttrValue } from '@/api/product/attr/type';
 import { ElMessage } from 'element-plus';
@@ -85,11 +85,16 @@ let attrParams = reactive<Attr>({
   categoryLevel: 3
 })
 
-onMounted(()=>{
-  scene.value = 0
-  attrArr.value = []
-  categoryStore.c1Id = categoryStore.c2Id = categoryStore.c3Id = ''
+onBeforeUnmount(()=>{ 
+  //清空仓库数据
+  categoryStore.$reset()
 })
+
+// onMounted(()=>{
+//   scene.value = 0
+//   attrArr.value = []
+//   categoryStore.c1Id = categoryStore.c2Id = categoryStore.c3Id = ''
+// })
 
 // 监听仓库三级分类ID
 watch(()=> categoryStore.c3Id, () => {
