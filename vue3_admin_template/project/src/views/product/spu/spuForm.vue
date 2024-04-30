@@ -77,7 +77,7 @@ import { ElMessage } from 'element-plus';
 let $emit = defineEmits(['changeScene']);
 //点击取消按钮:通知父组件切换场景为1,展示有的SPU的数据
 const cancel = () => {
-  $emit('changeScene',0);
+  $emit('changeScene',{flag:0,params:'update'});
 }
 //存储已有的SPU这些数据
 let AllTradeMark = ref<Trademark[]>([]);
@@ -141,7 +141,9 @@ const handlePictureCardPreview = (file: any) => {
 const handleRemove = () => {
   console.log(123);
 }
-//照片钱上传成功之前的钩子约束文件的大小与类型
+   
+//照片墙上传成功之前的钩子
+//用于约束文件的大小与类型
 const handlerUpload = (file: any) => {
   if (file.type == 'image/png' || file.type == 'image/jpeg' || file.type == 'image/gif') {
       if (file.size / 1024 / 1024 < 3) {
@@ -241,6 +243,8 @@ const toLook = (row: SaleAttr) => {
 
 //保存按钮的回调
 const save = async () => {
+  console.log('111111111111111');
+  
   //整理参数
   //发请求:添加SPU|更新已有的SPU
   //成功
@@ -249,6 +253,7 @@ const save = async () => {
   SpuParams.value.spuImageList = imgList.value.map((item: any) => {
       return {
           imgName: item.name,//图片的名字
+          //新增图片item.response  已有的图片 item.url
           imgUrl: (item.response && item.response.data) || item.url
       }
   });

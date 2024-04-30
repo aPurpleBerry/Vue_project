@@ -98,12 +98,20 @@ const changeSize = () => {
 //添加新的SPU
 const addSpu = () => {
   scene.value = 1
+  //子组件 初始化数据
+  spu.value.initAddSpu(categoryStore.c3Id)
 }
 
 //子组件SPUFORM: 子组件通知父组件
-const changeScene = (num:number) => {
+const changeScene = (obj:any) => {
   //子组件SPUFORM点击取消
-  scene.value = num
+  scene.value = obj.flag
+  // 再次获取全部的已有SPU
+  if(obj.params == 'update') {
+    getHasSpu(pageNo.value)
+  } else {
+    getHasSpu()
+  }
 }
 
 // 修改已有SPU
