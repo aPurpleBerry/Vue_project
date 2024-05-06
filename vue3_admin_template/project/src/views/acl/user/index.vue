@@ -1,4 +1,5 @@
 <template>
+<div class="user">
   <el-card style="height: 80px;">
       <el-form :inline="true" class="form">
           <el-form-item label="用户名:">
@@ -96,6 +97,7 @@
           </div>
       </template>
   </el-drawer>
+</div>
 </template>
 <script setup lang="ts">
 import useLayOutSettingStore from '@/store/modules/setting'
@@ -354,6 +356,9 @@ const reset = () => {
 </script>
 
 <style scoped>
+.user {
+  padding: 20px;
+}
 .form {
   display: flex;
   justify-content: space-between;

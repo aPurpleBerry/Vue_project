@@ -19,6 +19,9 @@ import router from './router'
 
 import pinia from './store'
 
+//暗黑模式
+import 'element-plus/theme-chalk/dark/css-vars.css'
+
 // createApp(App).mount('#app')
 const app = createApp(App) //获取实例对象
 

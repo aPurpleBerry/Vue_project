@@ -105,7 +105,7 @@ const rules ={
     { required: true, trigger: 'change', validator: validatorUserName }
   ],
   password:[
-    { required: true, min: 3, max: 10, message: '密码长度至少3位', trigger: 'change' }
+    { required: true, min: 3, max: 20, message: '密码长度至少3位', trigger: 'change' }
   ]
 }
 </script>
