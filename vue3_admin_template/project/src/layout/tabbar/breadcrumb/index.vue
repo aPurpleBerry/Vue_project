@@ -23,19 +23,20 @@ export default {
 </script>
 
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import useLayoutSetting from '@/store/modules/setting'
 let LayoutSettingStore = useLayoutSetting()
 
-import { useRoute } from 'vue-router';
+
 const $route = useRoute()
 
 const changIcon = ()=>{
   LayoutSettingStore.fold = !LayoutSettingStore.fold
 }
 
-const handler = ()=>{
-  console.log($route.matched); //获取匹配到
-}
+// const handler = ()=>{
+//   console.log($route.matched); //获取匹配到
+// }
 </script>
 
 <style scoped lang="scss">
