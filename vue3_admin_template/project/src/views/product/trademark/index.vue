@@ -2,7 +2,10 @@
   <div class="trade_box">
     <el-card style="max-width: 1300px">
       <!-- 添加品牌按钮 -->
-      <el-button type="primary" size="default" icon="Plus" @click="addTradeMark">添加品牌</el-button>
+      <el-button  v-has="`btn.Trademark.add`"
+        type="primary" size="default" icon="Plus" @click="addTradeMark"
+        style="margin-bottom: 10px;">添加品牌
+      </el-button>
       <!-- 表格组件 -->
       <!-- 
         table属性
@@ -116,6 +119,9 @@ import {ref, onMounted, reactive, nextTick} from 'vue'
 import { reqHasTrademark, reqAddOrUpdateTrademark, reqDeleteTrademark } from '@/api/product/trademark';
 import type {TradeMarkResponseData, TradeMark, Records} from '@/api/product/trademark/type.ts'
 import { ElMessage, type UploadProps } from 'element-plus'
+//按钮权限的实现
+// import useUserStore from '@/store/modules/user';
+// let userStore = useUserStore()
 
 let formRef = ref()
 

@@ -34,6 +34,10 @@ app.use(router)
 
 app.use(pinia)
 
+//自定义指令
+import {isHasButton} from '@/directive/has'
+isHasButton(app)
+
 // 引入路由鉴权
 import './permission.ts';
 

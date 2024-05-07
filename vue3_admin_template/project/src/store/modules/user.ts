@@ -6,11 +6,29 @@ import  {reqLogin,reqUserInfo,reqLogout } from '@/api/user/index.ts'
 import type {loginFormData,loginResponseData,userInfoResponseData} from '@/api/user/type.ts'
 
 // 引入路由（常量路由)
-import { constantRoute } from '@/router/routes.ts'
+import { constantRoute,asyncRoute,anyRoute } from '@/router/routes.ts'
 
 import type {UserState} from './types/type.ts'
 //引入操作本地存储的数据
 import { SET_TOKEN, GET_TOKEN, REMOVE_TOKEN } from '@/utils/token.ts'
+
+import router from '@/router'
+
+//引入深拷贝方法
+//@ts-ignore
+import cloneDeep from 'lodash/cloneDeep';
+
+//用于过滤当前用户需要展示的异步路由
+function filterAsyncRoute (asyncRoute:any, routes:any) {
+  return asyncRoute.filter((item:any) => {
+    if(routes.includes(item.name)) {
+      if(item.children && item.children.length>0) {
+        item.children = filterAsyncRoute(item.children, routes)
+      }
+      return true
+    }
+  })
+}
 
 let useUserStore = defineStore('User', {
   // 小仓库存储数据的地方
@@ -19,7 +37,9 @@ let useUserStore = defineStore('User', {
       token: GET_TOKEN(),
       menuRoutes: constantRoute, // 仓库存储菜单
       username: '',
-      avatar: ''
+      avatar: '',
+      //存储当前用户是否包含某一个按钮
+      buttons: []
     }
   },
   //异步/逻辑
@@ -29,9 +49,8 @@ let useUserStore = defineStore('User', {
     async userLogin(loginForm:loginFormData) {
       // console.log(loginForm);
       let res:loginResponseData = await reqLogin(loginForm)
-      // console.log('这里是store');
-      
-      console.log(res);
+      // console.log('这里是store');   
+      // console.log(res);
 
       if(res.code === 200) {
         this.token = (res.data)as string
@@ -47,12 +66,21 @@ let useUserStore = defineStore('User', {
     //获取用户信息 （带着token访问服务器获取数据）
     async userInfo() {
       let res:userInfoResponseData = await reqUserInfo()
+
       console.log('-----userInfo---');
       console.log(res);
       // 若获取用户信息成功 存储用户信息
       if(res.code === 200) {
         this.username = res.data.name
         this.avatar = res.data.avatar
+        this.buttons = res.data.buttons
+        let userAsyncRoute = filterAsyncRoute(cloneDeep(asyncRoute), res.data.routes)
+        this.menuRoutes = [...constantRoute, ...userAsyncRoute, anyRoute];
+        //目前路由器管理的只有常量路由：用户计算完毕的需要追加
+        [...userAsyncRoute, anyRoute].forEach((route:any) => {
+          router.addRoute(route)
+        })
+
         return 'ok'
       } else {
         return Promise.reject(new Error(res.message))

@@ -46,49 +46,20 @@ export const constantRoute = [
     },
   },
   {
-    // 权限管理
-    path: '/acl',
-    component: ()=>import('@/layout/index.vue'),
-    name: 'Acl',
-    meta: {
-      title: '权限管理',
-      hidden: false,
-      icon: 'Lock' 
+    //404
+    path: '/404',
+    component: ()=> import('@/views/404/index.vue'),
+    name: '404',
+    meta: {  
+      title: '404',
+      hidden: true,
+      icon: 'Crop'
     },
-    redirect: '/acl/user',
-    children: [
-      {
-        path: '/acl/user',
-        component: ()=>import('@/views/acl/user/index.vue'),
-        name: 'User',
-        meta: {
-          title: '用户管理',
-          hidden: false,
-          icon: 'User' 
-        },
-      },
-      {
-        path: '/acl/role',
-        component: ()=>import('@/views/acl/role/index.vue'),
-        name: 'Role',
-        meta: {
-          title: '角色管理',
-          hidden: false,
-          icon: 'UserFilled' 
-        },
-      },
-      {
-        path: '/acl/permission',
-        component: ()=>import('@/views/acl/permission/index.vue'),
-        name: 'Permission',
-        meta: {
-          title: '菜单管理',
-          hidden: false,
-          icon: 'List' 
-        },
-      }
-    ]
-  },
+  }
+]
+
+//异步路由
+export const asyncRoute = [
   {
     //商品管理
     path: '/product',
@@ -144,17 +115,53 @@ export const constantRoute = [
     ]
   },
   {
-    //404
-    path: '/404',
-    component: ()=> import('@/views/404/index.vue'),
-    name: '404',
-    meta: {  
-      title: '404',
-      hidden: true,
-      icon: 'Crop'
+    // 权限管理
+    path: '/acl',
+    component: ()=>import('@/layout/index.vue'),
+    name: 'Acl',
+    meta: {
+      title: '权限管理',
+      hidden: false,
+      icon: 'Lock' 
     },
-  },
-  {
+    redirect: '/acl/user',
+    children: [
+      {
+        path: '/acl/user',
+        component: ()=>import('@/views/acl/user/index.vue'),
+        name: 'User',
+        meta: {
+          title: '用户管理',
+          hidden: false,
+          icon: 'User' 
+        },
+      },
+      {
+        path: '/acl/role',
+        component: ()=>import('@/views/acl/role/index.vue'),
+        name: 'Role',
+        meta: {
+          title: '角色管理',
+          hidden: false,
+          icon: 'UserFilled' 
+        },
+      },
+      {
+        path: '/acl/permission',
+        component: ()=>import('@/views/acl/permission/index.vue'),
+        name: 'Permission',
+        meta: {
+          title: '菜单管理',
+          hidden: false,
+          icon: 'List' 
+        },
+      }
+    ]
+  }
+] 
+
+//任意路由
+export const anyRoute =  {
     // 任意路由：没有匹配上 上文中的任意一个
     path: '/:pathMatch(.*)*',
     redirect: '/404',
@@ -165,4 +172,3 @@ export const constantRoute = [
       icon: 'Delete'
     },
   }
-]

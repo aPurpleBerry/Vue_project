@@ -44,6 +44,7 @@ router.beforeEach(async(to, from, next) => {
         try {
           //场景是 刚登陆完，用户拿到后台给的token，但此时没有用户信息，就统一在路由首位中获取一下用户的信息。
           await userStore.userInfo()
+          //加载完之后放行
           next({ ...to })
 
         } catch(error) {
