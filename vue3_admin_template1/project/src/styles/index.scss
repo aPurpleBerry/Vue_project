@@ -1,0 +1,16 @@
+// 引入清除默认样式
+// 在css中@import是导入css样式表，这种方式通常会在css文件中使用
+@import './reset.scss'; //这里要加分号
+
+//滚动条外观设置
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background-color: #001529;
+}
+::-webkit-scrollbar-thumb {
+  width: 10px;
+  background-color: yellowgreen;
+  border-radius: 10px;
+}
