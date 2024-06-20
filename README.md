@@ -65,16 +65,20 @@ pnpm run dev
 
 # 效果图
 
-![image-20240620154728688](./img/image-20240620154728688.png)
+![image](https://github.com/aPurpleBerry/Vue_project_SelectionPlatform/assets/149553092/717d2745-cef2-4a23-8e88-96df0d98dcf1)
+
 
 - 首页
 
-![image-20240620154751390](./img/image-20240620154751390.png)
+![image](https://github.com/aPurpleBerry/Vue_project_SelectionPlatform/assets/149553092/70b3c52a-28ef-4b02-a106-4a3edefb04b6)
+
 
 - 角色管理
 
-![image-20240620154856444](./img/image-20240620154856444.png)
+![image](https://github.com/aPurpleBerry/Vue_project_SelectionPlatform/assets/149553092/ebdf9d93-7d65-4c66-8e7d-71bf6be084db)
+
 
 - 商品管理
 
-![image-20240620154838277](./img/image-20240620154838277.png)
+![image](https://github.com/aPurpleBerry/Vue_project_SelectionPlatform/assets/149553092/3548b7d4-e53e-4593-bcaf-3fadf7e586da)
+
